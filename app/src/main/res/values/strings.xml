@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Bepoz Pizza</string>
+    <string name="label_login">Login</string>
+    <string name="label_login_now">Login Now</string>
+    <string name="label_username">Username</string>
+    <string name="label_amazon">Amazon</string>
+    <string name="label_default">Default</string>
+    <string name="label_user_type">User Type</string>
+    <string name="label_microsoft">Microsoft</string>
+    <string name="label_facebook">Facebook</string>
+    <string name="empty_user_name_message">Please enter a valid user name</string>
+    <string name="welcome_message">Hey, %s Welcome to Bepoz Pizza</string>
+    <string name="label_logout">Logout</string>
+    <string name="dummy_content_description">dummy_content_description</string>
+    <string name="label_add">Add</string>
+    <string name="label_proceed_to_checkout">Proceed to checkout</string>
+    <string name="logout_message">Are you sure you want to logout? You may loose on privilege benefits.</string>
+    <string name="message_fetching_product_listing">Fetching Product Listing…</string>
+    <string name="message_refreshing_prices">Refreshing Prices…</string>
+    <string name="label_please_wait">Please wait</string>
+</resources>
