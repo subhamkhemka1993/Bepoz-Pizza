@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 
 
 sealed class UIText {
@@ -13,22 +12,18 @@ sealed class UIText {
     data class StringValue(val value: String) : UIText()
 }
 
-fun UITextParser(context: Context, uiText: UIText): String {
+fun Context.uiTextParser(uiText: UIText): String {
     return when (uiText) {
-        is UIText.ResourceString -> context.getString(uiText.stringResourceId)
+        is UIText.ResourceString -> this.getString(uiText.stringResourceId)
         is UIText.StringValue -> uiText.value
         is UIText.ResourceStringWithArg -> {
-            String.format(context.getString(uiText.stringResourceId), uiText.argument)
+            String.format(this.getString(uiText.stringResourceId), uiText.argument)
         }
     }
 }
 
-fun showShortToast(context: Context, uiText: UIText) {
-    Toast.makeText(context, UITextParser(context, uiText), Toast.LENGTH_SHORT).show()
-}
-
-fun showShortToast(context: Context, message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+fun Context.showShortToast(uiText: UIText) {
+    Toast.makeText(this, uiTextParser(uiText), Toast.LENGTH_SHORT).show()
 }
 
 

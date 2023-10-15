@@ -30,8 +30,8 @@ class HomeViewModel @Inject constructor(
     private var _pizzaUIItemListLiveData = MutableLiveData<List<PizzaUIItem>>()
     val pizzaUIItemListLiveData: LiveData<List<PizzaUIItem>> = _pizzaUIItemListLiveData
 
-    private var _checkoutInfoLiveData = MutableLiveData<Triple<Boolean, String, String>>()
-    val checkoutInfoLiveData: LiveData<Triple<Boolean, String, String>> = _checkoutInfoLiveData
+    private var _checkoutInfoLiveData = MutableLiveData<Triple<Boolean, String, Boolean>>()
+    val checkoutInfoLiveData: LiveData<Triple<Boolean, String, Boolean>> = _checkoutInfoLiveData
 
     private var _progressDialogLiveData = MutableLiveData<Pair<Boolean, UIText>>()
     val progressDialogLiveData: LiveData<Pair<Boolean, UIText>> = _progressDialogLiveData
@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         getPricingConfig()
-        _checkoutInfoLiveData.value = Triple(false, getFormattedPrice(currencySymbol, 0.00f), "")
+        _checkoutInfoLiveData.value = Triple(false, getFormattedPrice(currencySymbol, 0.00f), false)
     }
 
     private fun getPricingConfig() {
@@ -91,12 +91,8 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             checkoutManager.addItems(listOfPizzaItem.filter { it.itemQty > 0 })
             val calculatePricedPrice = checkoutManager.calculatePrice()
-            val offerName = if (calculatePricedPrice > 0) {
-                checkoutManager.getAppliedOfferName().orEmpty()
-            } else {
-                ""
-            }
-            _checkoutInfoLiveData.postValue(Triple(calculatePricedPrice > 0, getFormattedPrice(currencySymbol, calculatePricedPrice), offerName))
+            val isOfferApplied = checkoutManager.isOfferApplied()
+            _checkoutInfoLiveData.postValue(Triple(calculatePricedPrice > 0, getFormattedPrice(currencySymbol, calculatePricedPrice), isOfferApplied))
         }
     }
 

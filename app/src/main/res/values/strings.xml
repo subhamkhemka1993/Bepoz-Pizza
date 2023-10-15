@@ -18,4 +18,5 @@
     <string name="message_fetching_product_listing">Fetching Product Listing…</string>
     <string name="message_refreshing_prices">Refreshing Prices…</string>
     <string name="label_please_wait">Please wait</string>
+    <string name="message_offer_applied">Congratulation!! Offer Applied</string>
 </resources>

@@ -69,13 +69,8 @@ class CheckoutManagerImpl @Inject constructor() : CheckoutManager {
         _pricingConfigForUser = priceConfigList.filter { it.userType == userType }.getOrNull(0)
     }
 
-    override fun getAppliedOfferName(): String? {
-        return if (isOfferApplied) {
-            _pricingConfigForUser?.offerName
-        } else {
-            null
-        }
-
+    override fun isOfferApplied(): Boolean {
+        return isOfferApplied
     }
 
     override fun getDisplayOfferName(): String? {

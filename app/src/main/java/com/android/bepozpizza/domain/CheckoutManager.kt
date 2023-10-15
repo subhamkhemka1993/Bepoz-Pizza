@@ -12,6 +12,6 @@ interface CheckoutManager {
     fun addItems(pizzas: List<PizzaUIItem>)
     fun calculatePrice(): Float
     fun setUserType(userType: UserType?)
-    fun getAppliedOfferName(): String?
     fun getDisplayOfferName(): String?
+    fun isOfferApplied():Boolean
 }

@@ -10,8 +10,8 @@ data class PizzaItem(
     val description: String,
 )
 
-enum class PizzaType(val pizzaType: String) {
-    SMALL("small"),
-    MEDIUM("medium"),
-    LARGE("large")
+enum class PizzaType {
+    SMALL,
+    MEDIUM,
+    LARGE
 }

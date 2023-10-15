@@ -8,8 +8,6 @@ import androidx.viewbinding.ViewBinding
 import com.android.bepozpizza.R
 import com.android.bepozpizza.presentation.login.LoginBottomSheet
 import com.android.bepozpizza.presentation.login.LoginStateViewModel
-import com.android.bepozpizza.presentation.login.LoginUIState
-import com.android.bepozpizza.presentation.login.LoginViewModel
 
 abstract class BaseActivity<VM : ViewBinding> : AppCompatActivity() {
 

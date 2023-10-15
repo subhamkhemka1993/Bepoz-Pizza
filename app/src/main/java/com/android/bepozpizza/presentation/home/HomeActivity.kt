@@ -12,8 +12,8 @@ import com.android.bepozpizza.databinding.ActivityHomeBinding
 import com.android.bepozpizza.presentation.home.adapter.PizzaAdapter
 import com.android.bepozpizza.utils.ItemDecorator
 import com.android.bepozpizza.utils.UIText
-import com.android.bepozpizza.utils.UITextParser
 import com.android.bepozpizza.utils.showShortToast
+import com.android.bepozpizza.utils.uiTextParser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,10 +40,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 adapter = pizzaAdapter
             }
             ivInfo.setOnClickListener {
-                val offerMessage = homeViewModel.checkoutInfoLiveData.value?.third.orEmpty()
-                if (offerMessage.isNotEmpty()) {
-                    showShortToast(this@HomeActivity, offerMessage)
-                }
+                showShortToast(UIText.ResourceString(R.string.message_offer_applied))
             }
         }
         homeViewModel.getPizzaListing()
@@ -58,7 +55,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             binding.apply {
                 llCheckout.isEnabled = it.first
                 tvCheckoutPrice.text = it.second
-                ivInfo.isVisible = it.third.isNotEmpty()
+                ivInfo.isVisible = it.third
             }
         }
         homeViewModel.progressDialogLiveData.observe(this) {
@@ -80,7 +77,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         if (it.first) {
             progressDialog.apply {
                 setTitle(R.string.label_please_wait)
-                setMessage(UITextParser(this@HomeActivity, it.second))
+                setMessage(uiTextParser(it.second))
                 show()
             }
         } else {

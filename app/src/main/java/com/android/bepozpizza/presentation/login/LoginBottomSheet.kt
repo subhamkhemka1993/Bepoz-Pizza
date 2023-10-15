@@ -55,13 +55,13 @@ class LoginBottomSheet : BottomSheetDialogFragment() {
         loginViewModel.loginUIState.observe(this) { loginUIState ->
             when (loginUIState) {
                 is LoginUIState.EmptyUserName -> {
-                    showShortToast(requireContext(), loginUIState.emptyUserMessage)
+                    requireContext().showShortToast(loginUIState.emptyUserMessage)
                 }
 
                 is LoginUIState.LoginSuccess -> {
                     dismiss()
                     activity?.hideSoftKeyboard()
-                    showShortToast(requireContext(), loginUIState.loginSuccessMessage)
+                    requireContext().showShortToast(loginUIState.loginSuccessMessage)
                     loginStateViewModel.onLoginStateChange(isLoggedIn = true, binding.rgUserType.checkedRadioButtonId)
                 }
             }
